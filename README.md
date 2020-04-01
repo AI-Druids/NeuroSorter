@@ -1,0 +1,2 @@
+# PySorter
+A spike sorter
