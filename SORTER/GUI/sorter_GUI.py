@@ -146,10 +146,13 @@ class GUI(QMainWindow, ui):
             waveforms = np.asarray(self.dmg.spike_dict['Waveforms'])[index]
             units = np.unique(np.asarray(self.dmg.spike_dict['UnitID'])[index])
             self.MplWidget.clear_plot()
+            numUnits = []
             for unit in units:
                 subindex = np.asarray(self.dmg.spike_dict['UnitID'])[index] == unit
                 waveforms_unit = waveforms[subindex,:]
+                numUnits.append(len(waveforms_unit))
                 self.MplWidget.plot(waveforms_unit,unit)
+            self.MplWidget.plot_legend(units, numUnits)
                 
     def manage_average_plotting(self, channelID):
         num = len(self.dmg.spike_dict['ChannelID'])
@@ -162,7 +165,7 @@ class GUI(QMainWindow, ui):
             subindex = np.asarray(self.dmg.spike_dict['UnitID'])[index] == unit
             waveforms_unit = waveforms[subindex,:]
             self.MplWidget.plot_units(waveforms_unit,unit)
-        self.MplWidget.units_legend(units)
+        #self.MplWidget.units_legend(units)
             
         
     def manage_selection(self):
