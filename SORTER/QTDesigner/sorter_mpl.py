@@ -184,12 +184,12 @@ class Ui_MainWindows(object):
         MainWindows.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindows)
-        self.windows_tabWidget.setCurrentIndex(1)
+        self.windows_tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindows)
 
     def retranslateUi(self, MainWindows):
         _translate = QtCore.QCoreApplication.translate
-        MainWindows.setWindowTitle(_translate("MainWindows", "Biosignals"))
+        MainWindows.setWindowTitle(_translate("MainWindows", "PySorter"))
         self.external_groupBox.setTitle(_translate("MainWindows", "File"))
         self.btn_load.setText(_translate("MainWindows", "Load"))
         self.btn_save.setText(_translate("MainWindows", "Save"))
@@ -203,11 +203,11 @@ class Ui_MainWindows(object):
         self.label_3.setText(_translate("MainWindows", "UnitID"))
         self.log_groupBox.setTitle(_translate("MainWindows", "Log viewer"))
         self.signals_groupBox.setTitle(_translate("MainWindows", "Spike waveforms"))
-        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.principal_tab), _translate("MainWindows", "Principal"))
+        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.principal_tab), _translate("MainWindows", "Spikes_View"))
         self.groupBox.setTitle(_translate("MainWindows", "CUSTOM SCRIPTS"))
         self.btn_run.setText(_translate("MainWindows", "RUN SCRIPT"))
         self.btn_save_changes.setText(_translate("MainWindows", "SAVE CHANGES"))
         self.groupBox_2.setTitle(_translate("MainWindows", "PYTHON RAW CODE"))
-        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.others_tab), _translate("MainWindows", "Others"))
+        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.others_tab), _translate("MainWindows", "Scripts_Manager"))
 
 from QTDesigner.mplwidget import MplWidget
