@@ -86,6 +86,7 @@ class GUI(QMainWindow, ui):
             self.channel_comboBox.setCurrentIndex(0)
         index = self.dmg.show_channelID( self.channel_comboBox.currentText() )
         self.update_view(index)
+        self.update_unit_combobox(self.channel_comboBox.currentText())
         
     def toUnitID(self, action):
         self.log.myprint('ACTION == toUnitID->' + str(action))
