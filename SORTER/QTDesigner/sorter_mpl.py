@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sorter_mpl.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -29,7 +29,7 @@ class Ui_MainWindows(object):
         self.controlsGroup_verticalLayout.setSpacing(6)
         self.controlsGroup_verticalLayout.setObjectName("controlsGroup_verticalLayout")
         self.external_groupBox = QtWidgets.QGroupBox(self.principal_tab)
-        self.external_groupBox.setMinimumSize(QtCore.QSize(200, 60))
+        self.external_groupBox.setMinimumSize(QtCore.QSize(220, 60))
         self.external_groupBox.setMaximumSize(QtCore.QSize(200, 60))
         self.external_groupBox.setAlignment(QtCore.Qt.AlignCenter)
         self.external_groupBox.setObjectName("external_groupBox")
@@ -53,7 +53,7 @@ class Ui_MainWindows(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.controlsGroup_verticalLayout.addWidget(self.external_groupBox)
         self.connect_groupBox = QtWidgets.QGroupBox(self.principal_tab)
-        self.connect_groupBox.setMinimumSize(QtCore.QSize(200, 200))
+        self.connect_groupBox.setMinimumSize(QtCore.QSize(220, 200))
         self.connect_groupBox.setMaximumSize(QtCore.QSize(200, 200))
         self.connect_groupBox.setAlignment(QtCore.Qt.AlignCenter)
         self.connect_groupBox.setObjectName("connect_groupBox")
@@ -121,7 +121,7 @@ class Ui_MainWindows(object):
         self.verticalLayout_4.addLayout(self.gridLayout)
         self.controlsGroup_verticalLayout.addWidget(self.connect_groupBox)
         self.log_groupBox = QtWidgets.QGroupBox(self.principal_tab)
-        self.log_groupBox.setMinimumSize(QtCore.QSize(200, 200))
+        self.log_groupBox.setMinimumSize(QtCore.QSize(220, 200))
         self.log_groupBox.setMaximumSize(QtCore.QSize(200, 16777215))
         self.log_groupBox.setAlignment(QtCore.Qt.AlignCenter)
         self.log_groupBox.setObjectName("log_groupBox")
@@ -146,6 +146,7 @@ class Ui_MainWindows(object):
         self.horizontalLayout_4.addWidget(self.signals_groupBox)
         self.windows_tabWidget.addTab(self.principal_tab, "")
         self.others_tab = QtWidgets.QWidget()
+        self.others_tab.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.others_tab.setObjectName("others_tab")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.others_tab)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(-1, 0, 1311, 761))
@@ -211,3 +212,13 @@ class Ui_MainWindows(object):
         self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.others_tab), _translate("MainWindows", "Scripts_Manager"))
 
 from QTDesigner.mplwidget import MplWidget
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindows = QtWidgets.QMainWindow()
+    ui = Ui_MainWindows()
+    ui.setupUi(MainWindows)
+    MainWindows.show()
+    sys.exit(app.exec_())
+
