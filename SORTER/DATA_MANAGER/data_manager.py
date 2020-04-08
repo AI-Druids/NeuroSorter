@@ -108,43 +108,47 @@ class data_manager(nev_manager):
     
     def sort(self):
         print('self.current unitID ', self.current['unitID'])
-        if self.current['unitID'] != 'Noise' and self.current['unitID'] != 'All':            
+        if self.current['unitID'] != 'Noise' and self.current['unitID'] != 'All':     
             num = len(self.spike_dict['ChannelID'])
-            
             channelID = self.current['channelID']
             unitID = self.current['unitID']
-            
+            index_channel = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] == int(channelID) and self.spike_dict['UnitID'][i] != -1)] )
+
+            # reset old unit for undo action
+            self.spike_dict['OldID'] = [None for _ in self.spike_dict['OldID']]
+            for index in index_channel:
+                self.spike_dict['OldID'][index] = self.spike_dict['UnitID'][index]
+                
             # select the maximun unitID value for the current plotted channel
             index_ch = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] == int(channelID))] )
-            max_unitID = np.asarray(self.spike_dict['UnitID'])[index_ch].max()
-            print('max_unitID ', max_unitID)
+            max_unitID = np.asarray(self.spike_dict['UnitID'])[index_ch].max()+1
+            
             # select the current plotted(channel, unit) waveforms index
-            index = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] == int(channelID) and self.spike_dict['UnitID'][i] == int(unitID))] )
+            index_chunit = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] == int(channelID) and self.spike_dict['UnitID'][i] == int(unitID))] )
             # get the corresponding waveforms
-            waveforms = np.asarray(self.spike_dict['Waveforms'])[index]
+            waveforms = np.asarray(self.spike_dict['Waveforms'])[index_chunit]
             waveforms = np.expand_dims(waveforms,axis=-1)
             # compute clustering
             UnitIDs = self.ae.sort_spikes(waveforms)
+            print('units before: ', np.asarray(self.spike_dict['UnitID'])[index_ch])
+            print('max_unitID ', max_unitID)
             print('UnitIDs ', np.unique(UnitIDs))
-            # reset old unit for undo action, just for security
-            self.spike_dict['OldID'] = [None for _ in self.spike_dict['OldID']]
+            
             # set new unitIDs for the selected units in the selected channel
-            for i in range(len(index)):
+            for index,global_index in enumerate(index_chunit):
                 # first old ID is stored
-                self.spike_dict['OldID'][index[i]] = self.spike_dict['UnitID'][index[i]]
-                # second, the new ID is setted
-                self.spike_dict['UnitID'][index[i]] = int(UnitIDs[i]) + max_unitID
+                self.spike_dict['OldID'][global_index] = self.spike_dict['UnitID'][global_index]
+                # second, the new ID is set
+                self.spike_dict['UnitID'][global_index] = int(UnitIDs[index]) + max_unitID
                 
             # now correct the unitIDs of all units in the channel, except Noise
-            index_channel = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] == int(channelID) and self.spike_dict['UnitID'][i] != -1)] )
             unitIDs_2correct = np.unique( np.asarray(self.spike_dict['UnitID'])[index_channel] )
             print('unitIDs_2correct ', unitIDs_2correct)
             final_unitIDs = np.arange(1,len(unitIDs_2correct)+1)
             print('final_unitIDs ', final_unitIDs)
             
-            for i in range(len(index_channel)):
-                pos = list(unitIDs_2correct).index(self.spike_dict['UnitID'][index_channel[i]])
-                self.spike_dict['UnitID'][index_channel[i]] = final_unitIDs[pos]
+            for index in index_channel:
+                self.spike_dict['UnitID'][index] = list(unitIDs_2correct).index(self.spike_dict['UnitID'][index])+1
                 
             # current unit set to all, current channel is mantained
             self.current['unitID'] = 'All'

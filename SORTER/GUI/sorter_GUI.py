@@ -120,6 +120,8 @@ class GUI(QMainWindow, ui):
     def undo(self):
         self.log.myprint('ACTION == Undo')
         index = self.dmg.undo()
+        self.unit_comboBox.setCurrentIndex(0)
+        self.update_unit_combobox(self.channel_comboBox.currentText())
         self.update_view(index)
         
     def spikes_clean(self):
