@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Nov  3 16:19:09 2019
-
-@author: Javie
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
-
+#%%
 def load_data(filename):
 
     from brpylib import NevFile

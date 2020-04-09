@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@author: %(Mikel Val Calvo)s
-@email: %(mikel1982mail@gmail.com)
-@institution: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED))
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
+#%%
 
 from tensorflow.keras.layers import Dense, Input, Conv1D, Flatten, Reshape
 from tensorflow.keras.models import Model

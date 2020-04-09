@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-
+"""
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
+"""
+#%%
 # Form implementation generated from reading ui file 'sorter_mpl.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Dec 15 17:25:42 2018
-
-@author: UNED
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
 from DYNAMIC.dynamic import dynamic 

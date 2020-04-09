@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 29 18:17:11 2018
-
-@author: LENOVO
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
+#%%
 from PyQt5 import QtGui, QtCore
 
 class log():  

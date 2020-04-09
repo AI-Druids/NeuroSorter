@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
+"""
 #%%
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from PyQt5 import QtCore

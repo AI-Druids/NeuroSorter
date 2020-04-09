@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jul 18 14:02:49 2018
-
-@author: LENOVO
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
 from GUI.sorter_GUI import GUI 
@@ -34,4 +34,4 @@ class MyApp(QApplication):
         sys.exit(ret)
          
 main = MyApp()
-sys.exit(main.execute_gui())
+main.execute_gui()

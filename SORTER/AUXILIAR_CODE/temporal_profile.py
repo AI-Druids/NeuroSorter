@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-@author: %(Mikel Val Calvo)s
-@email: %(mikel1982mail@gmail.com)
-@institution: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED))
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
 import numpy as np 
@@ -20,8 +20,8 @@ def run(spike_dict, current):
         time_stamps[0,j] = (spike_dict["TimeStamps"][index[j]])/20 #TimeStamp of each spike is obtained 
         wave_forms[:,j] = (spike_dict["Waveforms"][index[j]]) #Waveform of each spike is obtained
         units[0,j] = spike_dict["UnitID"][index[j]]
-    #%% Plotting
-
+        
+    # Plotting
     colours = plt.get_cmap('Set1')    
     #Create a variable with the colours of interest
     plt.figure() #Create a figure
@@ -29,7 +29,7 @@ def run(spike_dict, current):
     plt.ylabel('uV')
     for j in np.unique(units):
         trans = np.where(units==j) 
-#Select the spikes in each unit
+        #Select the spikes in each unit
         trans = trans[1]
         print(colours(j))
         print(j)

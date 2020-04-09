@@ -1,13 +1,12 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Apr  3 19:06:53 2020
-
-@author: anaiak
+@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
+@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
+@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
+#%%
 
 ############      SHORTCUTS     ###############################################
-
 # Ctrl+Up ->  visualizes next channel in the combobox list of channels
 # Ctrl+Down -> visualizes the previous channel in the combobox list of channels
 # Shift+Up -> visualizes next unit in the combobox list of units
@@ -26,3 +25,4 @@ Created on Fri Apr  3 19:06:53 2020
 # Ctrl+z -> undo
 # Ctrl+c -> cleans all the events currently being visualized
 # Ctrl+s -> applies sorting over all the events currently being visualized
+#------------------------------------------------------------------------------
