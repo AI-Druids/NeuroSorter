@@ -38,7 +38,7 @@ PySorter uses an interactive interface to perform the spike sorting. In [fig:PyS
 
 9) Applies the sorting pipeline to the data displayed in the axis
 
-10) Main scree
+10) Main screen
 
 11) Color code of each units and number of events
 
