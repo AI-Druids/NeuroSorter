@@ -6,6 +6,9 @@ Note: This document covers the basic information to use PySorter Beta version
 
 Numpy, Matplotlib, Tensorflow==2.0.0, PyQT5, sklearn 
 
+All depencendies can be installed using
+pip install requirements.txt
+
 ## 2 Overview
 
 PySorter is a spike cleaner and sorter. It works at three levels: First, it normalizes the data and discard abnormal shapes to remove noise events using a CNN; this network can be trained with previously cleaned data do adapt it to the specific recording of each setup. Then, putative units are sorted using a combination of an autoencoder to reduce dimensionality and clustering using Gaussian Mixture Models. This second step can be repeated to subsequently split desired units. At last, all units are visualized for manual curation; in addition, different functions are provided to facilitate the data curation (acor, data visualization, ISI).
