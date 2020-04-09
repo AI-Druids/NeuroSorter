@@ -7,7 +7,7 @@ Note: This document covers the basic information to use PySorter Beta version
 Numpy, Matplotlib, Tensorflow==2.0.0, PyQT5, sklearn 
 
 All depencendies can be installed using
-pip install requirements.txt
+_pip install requirements.txt_
 
 ## 2 Overview
 
@@ -18,7 +18,7 @@ PySorter is a spike cleaner and sorter. It works at three levels: First, it norm
 
 PySorter uses an interactive interface to perform the spike sorting. In [fig:PySorter-Interface], the main elements of the interface are shown.
 
-![PySorter Scheme](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter.PNG?token=AKY2HR4ZK6P7IZXXJTEKAGS6R4YHC)
+![PySorter Scheme](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter.PNG?token=AKY2HR2K6JKUG2FTQLKMXYK6R43TY)
 
 1) Loading button
 
@@ -38,7 +38,7 @@ PySorter uses an interactive interface to perform the spike sorting. In [fig:PyS
 
 9) Applies the sorting pipeline to the data displayed in the axis
 
-10) Main scree
+10) Main screen
 
 11) Color code of each units and number of events
 
@@ -74,5 +74,7 @@ In order to sort the units, their dimensionality is reduced using an autencoder 
 Clustering is performed on the events ploted in the axis (10). Recursive clustering and/or re-clustering can be performed if considered benefitial.
 
 ### 5.3 Utilities
+
+![PySorter Script_Manager](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter_2.PNG?token=AKY2HR7H62MNICEUCJSVW4S6R43RK)
 
 Several functions are available to help in the sorting procedure in the “Scripts_Manager” tab. They operate using the events that are plotted in the main axis (10) when the script is executed. At this moment, ISI, autocorrelogram and temporal representation of the spikes are included. Source code can be edited in the right panel. Additional scripts with new analysis/visualization tools can be easily added including them in the folder “AUXILIAR_CODE”.
