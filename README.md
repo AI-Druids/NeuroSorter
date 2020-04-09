@@ -15,7 +15,7 @@ PySorter is a spike cleaner and sorter. It works at three levels: First, it norm
 
 PySorter uses an interactive interface to perform the spike sorting. In [fig:PySorter-Interface], the main elements of the interface are shown.
 
-![PySorter Scheme](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter.PNG?token=AKY2HR7R73G4HOAJOT7D4XK6R4XOA)
+![PySorter Scheme](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter.PNG?token=AKY2HR4ZK6P7IZXXJTEKAGS6R4YHC)
 
 1) Loading button
 
