@@ -43,12 +43,18 @@ PySorter uses an interactive interface to perform the spike sorting. In [fig:PyS
 13) Utilities
 
 ## 4 Hotkeys
-**Ctrl+Up/Down** -> move across channels
-**Shift+Up/Down** -> move across units on each channel
+**Ctrl+Up/Down** -> move across channels.
+
+**Shift+Up/Down** -> move across units on each channel.
+
 **Alt+[0,1,2,3,4,5,6,7,8,9]** -> sends selected spikes to the specified unit, 0 unit is used for noise.
+
 **Ctrl+c** -> clean spikes from noise for all the loaded waveforms.
-**Ctrl+s** -> Sorting of current visualized waveforms
-**Ctrl+d** -> Send selected waveforms to noise, equivalent to Alt+0
+
+**Ctrl+s** -> Sorting of current visualized waveforms.
+
+**Ctrl+d** -> Send selected waveforms to noise, equivalent to Alt+0.
+
 **Ctrl+z** -> Undo, only available for the last modification.
 
 ## 5 Algorithms
