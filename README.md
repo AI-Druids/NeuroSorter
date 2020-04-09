@@ -75,4 +75,6 @@ Clustering is performed on the events ploted in the axis (10). Recursive cluster
 
 ### 5.3 Utilities
 
+![PySorter Script_Manager](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter_2.PNG?token=AKY2HR7H62MNICEUCJSVW4S6R43RK)
+
 Several functions are available to help in the sorting procedure in the “Scripts_Manager” tab. They operate using the events that are plotted in the main axis (10) when the script is executed. At this moment, ISI, autocorrelogram and temporal representation of the spikes are included. Source code can be edited in the right panel. Additional scripts with new analysis/visualization tools can be easily added including them in the folder “AUXILIAR_CODE”.
