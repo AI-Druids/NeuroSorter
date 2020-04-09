@@ -20,9 +20,9 @@ PySorter uses an interactive interface to perform the spike sorting. In [fig:PyS
 
 2) Saving button
 
-3)Index with all the channels in the recording
+3) Index with all the channels in the recording
 
-4)Index with all the units in the present channel
+4) Index with all the units in the present channel
 
 5) Indicates to which channel to send the selected events
 
