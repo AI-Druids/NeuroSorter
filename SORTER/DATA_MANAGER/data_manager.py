@@ -107,7 +107,6 @@ class data_manager(nev_manager):
 
     
     def sort(self):
-        print('self.current unitID ', self.current['unitID'])
         if self.current['unitID'] != 'Noise' and self.current['unitID'] != 'All':     
             num = len(self.spike_dict['ChannelID'])
             channelID = self.current['channelID']
@@ -130,9 +129,6 @@ class data_manager(nev_manager):
             waveforms = np.expand_dims(waveforms,axis=-1)
             # compute clustering
             UnitIDs = self.ae.sort_spikes(waveforms)
-            print('units before: ', np.asarray(self.spike_dict['UnitID'])[index_ch])
-            print('max_unitID ', max_unitID)
-            print('UnitIDs ', np.unique(UnitIDs))
             
             # set new unitIDs for the selected units in the selected channel
             for index,global_index in enumerate(index_chunit):
@@ -143,9 +139,6 @@ class data_manager(nev_manager):
                 
             # now correct the unitIDs of all units in the channel, except Noise
             unitIDs_2correct = np.unique( np.asarray(self.spike_dict['UnitID'])[index_channel] )
-            print('unitIDs_2correct ', unitIDs_2correct)
-            final_unitIDs = np.arange(1,len(unitIDs_2correct)+1)
-            print('final_unitIDs ', final_unitIDs)
             
             for index in index_channel:
                 self.spike_dict['UnitID'][index] = list(unitIDs_2correct).index(self.spike_dict['UnitID'][index])+1

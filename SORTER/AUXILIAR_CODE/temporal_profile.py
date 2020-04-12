@@ -10,8 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 def run(spike_dict, current):
 
-    print('ya esta listo')
-    print('vamooos')
+
     index = current['plotted']
     time_stamps = np.empty((1,len(index)))
     wave_forms = np.empty((60,len(index)))
@@ -31,8 +30,7 @@ def run(spike_dict, current):
         trans = np.where(units==j) 
         #Select the spikes in each unit
         trans = trans[1]
-        print(colours(j))
-        print(j)
+
         color = colours(int(j))
         for i in trans:
             k = np.round(time_stamps[0,i]) #Round the time stamps

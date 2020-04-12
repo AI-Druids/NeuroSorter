@@ -92,7 +92,6 @@ class GUI(QMainWindow, ui):
         self.log.myprint('ACTION == toUnitID->' + str(action))
         if action == 'Up':
             index = self.unit_comboBox.currentIndex()
-            print(index,self.unit_comboBox.count())
             if index < self.unit_comboBox.count()-1: 
                 self.unit_comboBox.setCurrentIndex(index+1)
         elif action == 'Down':
@@ -161,7 +160,6 @@ class GUI(QMainWindow, ui):
         index = [i for i in range(num)  if (self.dmg.spike_dict['ChannelID'][i] == channelID and self.dmg.spike_dict['UnitID'][i] != -1)]
         waveforms = np.asarray(self.dmg.spike_dict['Waveforms'])[index]
         units = np.unique(np.asarray(self.dmg.spike_dict['UnitID'])[index])
-        print('average plotting units ', units)
         self.MplWidget.clear_plot_units()
         for unit in units:
             subindex = np.asarray(self.dmg.spike_dict['UnitID'])[index] == unit
@@ -192,7 +190,6 @@ class GUI(QMainWindow, ui):
                     self.dmg.current['selected'].append(index)
             
             if self.dmg.current['selected']:
-                print('paso')
                 selected = np.asarray(self.dmg.current['selected'])
                 waveforms = np.asarray(self.dmg.spike_dict['Waveforms'])[selected]
                 self.MplWidget.plot(waveforms,0)
@@ -209,7 +206,6 @@ class GUI(QMainWindow, ui):
     def update_unit_combobox(self, channelID):
         num = len(self.dmg.spike_dict['ChannelID'])
         units = np.unique([self.dmg.spike_dict['UnitID'][i] for i in range(num)  if (self.dmg.spike_dict['ChannelID'][i] == int(channelID) and self.dmg.spike_dict['UnitID'][i] != -1)])
-        print('update_unit_combobox ', units)
         self.unit_comboBox.clear() 
         for unit in units:
             self.unit_comboBox.addItem(str(unit))

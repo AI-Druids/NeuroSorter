@@ -36,7 +36,7 @@ class dynamic:
             reload(self.module)
             self.module.run(self.dmg.spike_dict, self.dmg.current)
         except:
-            print('error en dynamic ')
+            pass
             
     def save_script(self):
         script = self.listWidget.currentItem().text()

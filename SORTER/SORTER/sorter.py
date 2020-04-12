@@ -14,12 +14,12 @@ import numpy as np
     
 class AutoEncoder_GM:
     def __init__(self):
-        print('sorter')
+        pass
         
     def sort_spikes(self, spikes):
         spikes = spikes[:,15:50]
         shape = np.shape(spikes)[1]
-        print(shape)
+
         # normalize
         for i in range(np.shape(spikes)[0]):
             spikes[i,:] = spikes[i,:]-np.min(spikes[i,:])
@@ -40,12 +40,9 @@ class AutoEncoder_GM:
         call = callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=5, verbose=0, mode='auto', baseline=None, restore_best_weights=True)
         model.fit(spikes, spikes, batch_size=64, epochs=250, verbose=1, callbacks=[call], validation_split=0.2)
         
-
-        
         latent = model_hidden.predict(spikes)
 
         #%% clustering
-        
         X = latent
         lowest_bic = np.infty
         bic = []
@@ -55,7 +52,7 @@ class AutoEncoder_GM:
             # Fit a Gaussian mixture with EM
             gmm = mixture.GaussianMixture(n_components=n_components,covariance_type='diag')
             gmm.fit(X)
-    #        bic.append(gmm.bic(X))
+
             bic = np.append(bic, gmm.bic(X))
             if bic[-1] < lowest_bic:
                 lowest_bic = bic[-1]
@@ -64,7 +61,5 @@ class AutoEncoder_GM:
                 bic = np.array(bic)
     
         clf = best_gmm
-        
         unit_IDs = clf.predict(X)
-    
         return unit_IDs

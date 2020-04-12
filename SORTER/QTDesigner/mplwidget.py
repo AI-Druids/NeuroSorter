@@ -31,13 +31,10 @@ class MplWidget(QWidget):
         self.canvas.axes.spines['bottom'].set_color('white')
         self.canvas.axes.spines['left'].set_color('white')
 
-        self.axins = self.figure.add_axes([.7, .15, .2, .25])
-        
-#        self.axins = inset_axes(self.canvas.axes, width="30%", height="30%", loc=4, borderpad=1)
+        self.axins = self.figure.add_axes([.7, .15, .2, .25]) 
         self.axins.tick_params(labelleft=False, labelbottom=False)
         #--
         vertical_layout = QVBoxLayout() 
-#        vertical_layout.addWidget(NavigationToolbar(self.canvas, self))
         vertical_layout.addWidget(self.canvas)
         self.setLayout(vertical_layout)
         #--
