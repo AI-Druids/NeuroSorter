@@ -5,6 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
+from GLOBAL_CONSTANTS import SPIKES_EXPAND
 from DATA_MANAGER.brpylib import NevFile
 import numpy as np
 
@@ -40,8 +41,8 @@ class nev_manager:
                 self.spike_dict['Waveforms'].append( waveform )           
     
     def __expand(self,waveform):
-        ini = np.zeros((6,))
-        end = np.zeros((6,))
+        ini = np.zeros((SPIKES_EXPAND,))
+        end = np.zeros((SPIKES_EXPAND,))
         return np.hstack((ini,waveform,end))
 
         

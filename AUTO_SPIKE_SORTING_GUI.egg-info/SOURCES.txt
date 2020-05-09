@@ -1,0 +1,12 @@
+README.md
+setup.py
+AUTO_SPIKE_SORTING_GUI/AUTO_SPIKE_SORTING_GUI.py
+AUTO_SPIKE_SORTING_GUI/Sorting_pipeline.py
+AUTO_SPIKE_SORTING_GUI/__init__.py
+AUTO_SPIKE_SORTING_GUI/core_functions_spike_sorter.py
+AUTO_SPIKE_SORTING_GUI/train_cleaner_cnn.py
+AUTO_SPIKE_SORTING_GUI.egg-info/PKG-INFO
+AUTO_SPIKE_SORTING_GUI.egg-info/SOURCES.txt
+AUTO_SPIKE_SORTING_GUI.egg-info/dependency_links.txt
+AUTO_SPIKE_SORTING_GUI.egg-info/requires.txt
+AUTO_SPIKE_SORTING_GUI.egg-info/top_level.txt

@@ -212,7 +212,11 @@ class GUI(QMainWindow, ui):
         self.unit_comboBox.addItem('All')
         self.unit_comboBox.addItem('Noise')
         
-        self.dmg.current['unitID'] = int(self.unit_comboBox.currentText())
+        print('que tenemos en unit combobox currrent text ', self.unit_comboBox.currentText())
+        if self.unit_comboBox.currentText() != 'All' and self.unit_comboBox.currentText() != 'Noise':
+            self.dmg.current['unitID'] = int(self.unit_comboBox.currentText())
+        else:
+            self.dmg.current['unitID'] = 0
         
     def update_U2ID_combobox(self):
         units = ['Noise',1,2,3,4,5,6,7,8,9]

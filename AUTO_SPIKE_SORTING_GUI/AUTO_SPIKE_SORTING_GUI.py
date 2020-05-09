@@ -5,11 +5,12 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
+from GLOBAL_CONSTANTS import APP_CSS_STYLE
 from GUI.sorter_GUI import GUI 
 from DATA_MANAGER.data_manager import data_manager
 from CLEANER.cleaner import spike_denoiser
 from SORTER.sorter import AutoEncoder_GM
-from QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 
 import sys
 
@@ -26,7 +27,7 @@ class MyApp(QApplication):
 
     def loadStyle(self):
         #Aplicamos CSS
-        with open("QTDesigner/style_dark_orange.css") as f:
+        with open(APP_CSS_STYLE) as f:
             self.setStyleSheet(f.read())
         
     def execute_gui(self):
