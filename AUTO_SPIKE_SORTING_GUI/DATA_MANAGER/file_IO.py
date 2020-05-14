@@ -12,16 +12,17 @@ import numpy as np
 class nev_manager:   
      
     def load(self, fileNames):
+        self.initialize_spike_containers()
+        
         ExperimentID = 0
         for file in fileNames:
             if file[-4:] == '.nev':
                 nev_file = NevFile(file)
                 ExperimentData = nev_file.getdata()
                 self.__nevdata2dict(ExperimentData,ExperimentID)
-                ExperimentID += 1
             elif file[-4:] == '.npy':
                 self.__python_dict(file)
-                ExperimentID += 1
+            ExperimentID += 1
         
     
     def save(self, path):

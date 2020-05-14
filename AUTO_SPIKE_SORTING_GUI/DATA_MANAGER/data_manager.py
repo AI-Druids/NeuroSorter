@@ -16,6 +16,7 @@ class data_manager(nev_manager):
         self.spk = spk
         self.ae = ae
         
+    def initialize_spike_containers(self):
         self.current ={'channelID':None,'unitID':None,'plotted':[],'selected':[]}
         self.spike_dict = {'ExperimentID':[],'ChannelID':[],'UnitID':[],'OldID':[],'TimeStamps':[],'Waveforms':[]}
         
