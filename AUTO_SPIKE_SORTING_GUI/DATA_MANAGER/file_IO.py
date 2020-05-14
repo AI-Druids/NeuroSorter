@@ -11,7 +11,7 @@ import numpy as np
 
 class nev_manager:   
      
-    def load_nev(self, fileNames):
+    def load(self, fileNames):
         ExperimentID = 0
         for file in fileNames:
             if file[-4:] == '.nev':
@@ -21,6 +21,8 @@ class nev_manager:
                 ExperimentID += 1
             elif file[-4:] == '.npy':
                 self.__python_dict(file)
+                ExperimentID += 1
+        
     
     def save(self, path):
         np.save(path,self.spike_dict)

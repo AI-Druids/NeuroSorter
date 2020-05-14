@@ -105,9 +105,16 @@ class GUI(QMainWindow, ui):
         
     def selected_unit2ID(self, unit):
         self.log.myprint('ACTION == selected_unit2ID->' + str(unit))
-        self.U2ID_comboBox.setCurrentIndex(unit)
+        if unit == 'Noise':
+            self.U2ID_comboBox.setCurrentIndex(0)
+        else:
+            self.U2ID_comboBox.setCurrentIndex(unit) 
         index = self.dmg.selected_unit2ID( self.U2ID_comboBox.currentText() )
-        self.unit_comboBox.setCurrentIndex(unit)
+        
+        # if unit == 'Noise':
+        #     self.U2ID_comboBox.setCurrentIndex(0)
+        # else:
+        #     self.U2ID_comboBox.setCurrentIndex(unit) 
         self.update_unit_combobox(self.channel_comboBox.currentText())
         self.update_view(index)
         
@@ -236,7 +243,7 @@ class GUI(QMainWindow, ui):
             self.log.myprint_in(file)
             
         try:
-            self.dmg.load_nev(fileNames)
+            self.dmg.load(fileNames)
             self.log.myprint_out('Loading completed.')
         except:
             self.log.myprint_error('Cannot load selected file.')

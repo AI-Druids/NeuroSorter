@@ -94,8 +94,8 @@ class data_manager(nev_manager):
         
         scores = self.spk.run(waveforms)
         
-        spike_index = index[scores[:,0]==1]
-        noise_index = index[scores[:,0]!=1]
+        spike_index = index[scores==0]
+        noise_index = index[scores==1]
         
         for i in range(len(spike_index)):
             self.spike_dict['UnitID'][spike_index[i]] = 1

@@ -33,5 +33,6 @@ class spike_denoiser:
         for i in range(0,waveforms.shape[0]):
             waveforms[i,:] = (waveforms[i,:] - np.min(waveforms[i,:])) / (np.max(waveforms[i,:]) - np.min(waveforms[i,:])).astype(float)
         # inference on waveforms using the loaded model
-        scores = self.model.predict_proba(waveforms, batch_size=BATCH_SIZE)
+        scores = self.model.predict_classes(waveforms, batch_size=BATCH_SIZE)
+        print(scores)
         return scores 
