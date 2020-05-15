@@ -6,7 +6,8 @@ Note: This document covers the basic information to use PySorter Beta version
 
 Numpy, Matplotlib, Tensorflow==2.0.0, PyQT5, sklearn 
 
-All dependencies can be installed using
+All dependencies can be installed using:
+
 git clone https://github.com/AI-Druids/PySorter
 
 cd PySorter
