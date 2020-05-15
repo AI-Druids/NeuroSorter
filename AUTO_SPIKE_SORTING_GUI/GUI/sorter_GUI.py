@@ -249,7 +249,7 @@ class GUI(QMainWindow, ui):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
 
-        fileTypes = "Python (*.npy);;NEV (*.nev)"
+        fileTypes = "Python (*.npy)"
         fileNames, _ = QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileName()","",fileTypes, options=options)    
         #----------------- load data -----#
         for file in fileNames:
