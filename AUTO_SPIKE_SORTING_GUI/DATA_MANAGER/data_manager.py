@@ -5,6 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
+from GLOBAL_CONSTANTS import THRESHOLD_RANGE
 from DATA_MANAGER.file_IO import nev_manager 
 import numpy as np
 
@@ -15,11 +16,12 @@ class data_manager(nev_manager):
         
         self.spk = spk
         self.ae = ae
+        self.threshold = THRESHOLD_RANGE # range in micro volts
         
     def initialize_spike_containers(self):
         self.current ={'channelID':None,'unitID':None,'plotted':[],'selected':[]}
         self.spike_dict = {'ExperimentID':[],'ChannelID':[],'UnitID':[],'OldID':[],'TimeStamps':[],'Waveforms':[]}
-        
+         
     def show_channelID(self, channelID):
         num = len(self.spike_dict['ChannelID'])
         self.current['channelID'] = int(channelID)
@@ -84,6 +86,21 @@ class data_manager(nev_manager):
             
         self.spike_dict['OldID'] = [None for _ in self.spike_dict['OldID']]
         
+        return self.current['plotted']
+
+    def clean_by_threshold(self, r_min, r_max):
+        self.threshold[0] = r_min * 1e3
+        self.threshold[1] = r_max * 1e3
+        
+        num = len(self.spike_dict['ChannelID'])
+        index = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] > 0)] )
+        waveforms = np.asarray(self.spike_dict['Waveforms'])[index]
+        
+        index = np.asarray( [i for i in index if (waveforms[i].min() < self.threshold[0] or waveforms[i].min() > self.threshold[1])] )
+        for i in index:
+            self.spike_dict['OldID'][i] = self.spike_dict['UnitID'][i]
+            self.spike_dict['UnitID'][i] = -1
+            
         return self.current['plotted']
     
     def clean(self):

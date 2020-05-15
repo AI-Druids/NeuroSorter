@@ -30,6 +30,7 @@ class GUI(QMainWindow, ui):
         self.channel_comboBox.activated.connect(lambda:  self.toChannelID(self.channel_comboBox.currentText()))
         self.unit_comboBox.activated.connect(lambda:  self.toUnitID(self.unit_comboBox.currentText()))
         self.U2ID_comboBox.activated.connect(lambda:  self.selected_unit2ID(self.U2ID_comboBox.currentText()))
+        self.threshold_btn.clicked.connect(lambda: self.update_threshold())
         self.delete_btn.clicked.connect(lambda:  self.delete())
         self.undo_btn.clicked.connect(lambda:  self.undo())
         self.clean_btn.clicked.connect(lambda:  self.spikes_clean())
@@ -118,6 +119,18 @@ class GUI(QMainWindow, ui):
         self.update_unit_combobox(self.channel_comboBox.currentText())
         self.update_view(index)
         
+    def update_threshold(self):
+        self.log.myprint('UPDATE Threshold range.')
+        text = self.Threshold_Edit.text()
+        r_min = int(text.split(',')[0].split('[')[1])
+        r_max = int(text.split(',')[1].split(']')[0])
+        
+        index = self.dmg.clean_by_threshold( r_min, r_max )
+        
+        self.unit_comboBox.setCurrentIndex(0)
+        self.update_unit_combobox(self.channel_comboBox.currentText())
+        self.update_view(index)
+    
     def delete(self):
         self.log.myprint('ACTION == Delete')
         index = self.dmg.delete()

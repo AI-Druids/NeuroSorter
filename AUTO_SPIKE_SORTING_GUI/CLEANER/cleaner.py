@@ -5,8 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import CLEANER_MODEL_LOAD_METHOD, CLEANER_DEEPL_H5_MODEL, CLEANER_DEEPL_JSON, CLEANER_DEEPL_WEIGHTS, LOSS, OPTIMIZER, BATCH_SIZE
-from tensorflow.keras.models import model_from_json
+from GLOBAL_CONSTANTS import CLEANER_DEEPL_H5_MODEL, LOSS, OPTIMIZER, BATCH_SIZE
 from keras.models import load_model
 import numpy as np
 
@@ -16,15 +15,7 @@ class spike_denoiser:
         self.model = self.__load_model()
     
     def __load_model(self):
-        if CLEANER_MODEL_LOAD_METHOD == 'json_weights':
-            json_file = open(CLEANER_DEEPL_JSON, 'r')
-            loaded_model_json = json_file.read()
-            json_file.close()
-            model = model_from_json(loaded_model_json)
-            # load weights into new model
-            model.load_weights(CLEANER_DEEPL_WEIGHTS)
-        elif CLEANER_MODEL_LOAD_METHOD == 'h5':
-            model = load_model(CLEANER_DEEPL_H5_MODEL)
+        model = load_model(CLEANER_DEEPL_H5_MODEL)
         model.compile(loss=LOSS, optimizer=OPTIMIZER, metrics=['accuracy'])
         return model
         

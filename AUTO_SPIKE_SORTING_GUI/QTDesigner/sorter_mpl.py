@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
-"""
-@authors: %(Val-Calvo, Mikel and Alegre-Cortés, Javier)
-@emails: %(mikel1982mail@gmail.com, jalegre@umh.es)
-@institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
-"""
-#%%
+
 # Form implementation generated from reading ui file 'sorter_mpl.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
+from QTDesigner.mplwidget import MplWidget
 
 class Ui_MainWindows(object):
     def setupUi(self, MainWindows):
@@ -68,20 +64,20 @@ class Ui_MainWindows(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setContentsMargins(6, 6, 6, 6)
         self.gridLayout.setObjectName("gridLayout")
+        self.undo_btn = QtWidgets.QPushButton(self.connect_groupBox)
+        self.undo_btn.setMinimumSize(QtCore.QSize(0, 25))
+        self.undo_btn.setMaximumSize(QtCore.QSize(100, 25))
+        self.undo_btn.setObjectName("undo_btn")
+        self.gridLayout.addWidget(self.undo_btn, 4, 1, 1, 1)
+        self.U2ID_comboBox = QtWidgets.QComboBox(self.connect_groupBox)
+        self.U2ID_comboBox.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.U2ID_comboBox.setObjectName("U2ID_comboBox")
+        self.gridLayout.addWidget(self.U2ID_comboBox, 2, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.connect_groupBox)
         self.label.setMaximumSize(QtCore.QSize(100, 16777215))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 2, 0, 1, 1)
-        self.undo_btn = QtWidgets.QPushButton(self.connect_groupBox)
-        self.undo_btn.setMinimumSize(QtCore.QSize(0, 25))
-        self.undo_btn.setMaximumSize(QtCore.QSize(100, 25))
-        self.undo_btn.setObjectName("undo_btn")
-        self.gridLayout.addWidget(self.undo_btn, 3, 1, 1, 1)
-        self.U2ID_comboBox = QtWidgets.QComboBox(self.connect_groupBox)
-        self.U2ID_comboBox.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.U2ID_comboBox.setObjectName("U2ID_comboBox")
-        self.gridLayout.addWidget(self.U2ID_comboBox, 2, 1, 1, 1)
         self.delete_btn = QtWidgets.QPushButton(self.connect_groupBox)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -91,17 +87,17 @@ class Ui_MainWindows(object):
         self.delete_btn.setMinimumSize(QtCore.QSize(0, 25))
         self.delete_btn.setMaximumSize(QtCore.QSize(100, 25))
         self.delete_btn.setObjectName("delete_btn")
-        self.gridLayout.addWidget(self.delete_btn, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.delete_btn, 4, 0, 1, 1)
         self.clean_btn = QtWidgets.QPushButton(self.connect_groupBox)
         self.clean_btn.setMinimumSize(QtCore.QSize(0, 25))
         self.clean_btn.setMaximumSize(QtCore.QSize(100, 25))
         self.clean_btn.setObjectName("clean_btn")
-        self.gridLayout.addWidget(self.clean_btn, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.clean_btn, 5, 0, 1, 1)
         self.sorting_btn = QtWidgets.QPushButton(self.connect_groupBox)
         self.sorting_btn.setMinimumSize(QtCore.QSize(0, 25))
         self.sorting_btn.setMaximumSize(QtCore.QSize(100, 25))
         self.sorting_btn.setObjectName("sorting_btn")
-        self.gridLayout.addWidget(self.sorting_btn, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.sorting_btn, 5, 1, 1, 1)
         self.unit_comboBox = QtWidgets.QComboBox(self.connect_groupBox)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -123,6 +119,13 @@ class Ui_MainWindows(object):
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
+        self.Threshold_Edit = QtWidgets.QLineEdit(self.connect_groupBox)
+        self.Threshold_Edit.setAlignment(QtCore.Qt.AlignCenter)
+        self.Threshold_Edit.setObjectName("Threshold_Edit")
+        self.gridLayout.addWidget(self.Threshold_Edit, 3, 1, 1, 1)
+        self.threshold_btn = QtWidgets.QPushButton(self.connect_groupBox)
+        self.threshold_btn.setObjectName("threshold_btn")
+        self.gridLayout.addWidget(self.threshold_btn, 3, 0, 1, 1)
         self.verticalLayout_4.addLayout(self.gridLayout)
         self.controlsGroup_verticalLayout.addWidget(self.connect_groupBox)
         self.log_groupBox = QtWidgets.QGroupBox(self.principal_tab)
@@ -200,13 +203,15 @@ class Ui_MainWindows(object):
         self.btn_load.setText(_translate("MainWindows", "Load"))
         self.btn_save.setText(_translate("MainWindows", "Save"))
         self.connect_groupBox.setTitle(_translate("MainWindows", "Manual curation"))
-        self.label.setText(_translate("MainWindows", "SelectedUnit2ID"))
         self.undo_btn.setText(_translate("MainWindows", "Undo"))
+        self.label.setText(_translate("MainWindows", "SelectedUnit2ID"))
         self.delete_btn.setText(_translate("MainWindows", "Delete"))
         self.clean_btn.setText(_translate("MainWindows", "Clean"))
         self.sorting_btn.setText(_translate("MainWindows", "Sorting"))
         self.label_2.setText(_translate("MainWindows", "ChannelID"))
         self.label_3.setText(_translate("MainWindows", "UnitID"))
+        self.Threshold_Edit.setText(_translate("MainWindows", "[-300, 300]"))
+        self.threshold_btn.setText(_translate("MainWindows", "Set Threshold"))
         self.log_groupBox.setTitle(_translate("MainWindows", "Log viewer"))
         self.signals_groupBox.setTitle(_translate("MainWindows", "Spike waveforms"))
         self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.principal_tab), _translate("MainWindows", "Spikes_View"))
@@ -214,16 +219,15 @@ class Ui_MainWindows(object):
         self.btn_run.setText(_translate("MainWindows", "RUN SCRIPT"))
         self.btn_save_changes.setText(_translate("MainWindows", "SAVE CHANGES"))
         self.groupBox_2.setTitle(_translate("MainWindows", "PYTHON RAW CODE"))
-        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.others_tab), _translate("MainWindows", "Scripts_Manager"))
+        self.windows_tabWidget.setTabText(self.windows_tabWidget.indexOf(self.others_tab), _translate("MainWindows", "Others"))
 
-from QTDesigner.mplwidget import MplWidget
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindows = QtWidgets.QMainWindow()
-    ui = Ui_MainWindows()
-    ui.setupUi(MainWindows)
-    MainWindows.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindows = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindows()
+#     ui.setupUi(MainWindows)
+#     MainWindows.show()
+#     sys.exit(app.exec_())
 

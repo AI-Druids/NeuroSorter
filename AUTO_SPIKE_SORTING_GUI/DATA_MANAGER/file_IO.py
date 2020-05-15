@@ -40,7 +40,7 @@ class nev_manager:
                 self.spike_dict['UnitID'].append( 1 )
                 self.spike_dict['OldID'].append( None )           
                 self.spike_dict['TimeStamps'].append( ExperimentData['spike_events']['TimeStamps'][channel][event] )
-                waveform = self.__expand( ExperimentData['spike_events']['Waveforms'][channel][event]  )
+                waveform = self.__expand( ExperimentData['spike_events']['Waveforms'][channel][event] * 1000 )
                 self.spike_dict['Waveforms'].append( waveform )           
     
     def __expand(self,waveform):
