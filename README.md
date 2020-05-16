@@ -1,6 +1,6 @@
-# PySorter Basics
+# NeuroSirter Basics
 
-Note: This document covers the basic information to use PySorter Beta version
+Note: This document covers the basic information to use NeurSorter Beta version
 
 ## 1 Dependencies
 
