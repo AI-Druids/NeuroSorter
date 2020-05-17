@@ -1,6 +1,6 @@
 # NeuroSorter Basics
 
-Note: This document covers the basic information to use NeurSorter Beta version
+Note: This document covers the basic information to use NeuroSorter Beta version
 
 ## 1 Dependencies
 
