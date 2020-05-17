@@ -1,4 +1,4 @@
-# NeuroSirter Basics
+# NeuroSorter Basics
 
 Note: This document covers the basic information to use NeurSorter Beta version
 
@@ -8,20 +8,20 @@ Numpy, Matplotlib, Tensorflow==2.0.0, PyQT5, sklearn
 
 All dependencies can be installed using:
 
-git clone https://github.com/AI-Druids/PySorter
+git clone https://github.com/AI-Druids/NeurSorter
 
-cd PySorter
+cd NeurSorter
 
 _pip install -r requirements.txt_
 
 ## 2 Overview
 
-PySorter is a spike cleaner and sorter. It works at three levels: First, it normalizes the data and discard abnormal shapes to remove noise events using a CNN; this network can be trained with previously cleaned data do adapt it to the specific recording of each setup. Then, putative units are sorted using a combination of an autoencoder to reduce dimensionality and clustering using Gaussian Mixture Models. This second step can be repeated to subsequently split desired units. At last, all units are visualized for manual curation; in addition, different functions are provided to facilitate the data curation (acor, data visualization, ISI).
+NeurSorter is a spike cleaner and sorter. It works at three levels: First, it normalizes the data and discard abnormal shapes to remove noise events using a CNN; this network can be trained with previously cleaned data do adapt it to the specific recording of each setup. Then, putative units are sorted using a combination of an autoencoder to reduce dimensionality and clustering using Gaussian Mixture Models. This second step can be repeated to subsequently split desired units. At last, all units are visualized for manual curation; in addition, different functions are provided to facilitate the data curation (acor, data visualization, ISI).
 
-## 3 PySorter interface
+## 3 NeurSorter interface
 
 
-PySorter uses an interactive interface to perform the spike sorting. In [fig:PySorter-Interface], the main elements of the interface are shown.
+NeurSorter uses an interactive interface to perform the spike sorting. In [fig:PySorter-Interface], the main elements of the interface are shown.
 
 ![PySorter Scheme](https://raw.githubusercontent.com/AI-Druids/PySorter/master/Images/scheme_PySorter.PNG?token=AKY2HR2K6JKUG2FTQLKMXYK6R43TY)
 
