@@ -1,5 +1,0 @@
-numpy
-matplotlib
-tensorflow==2.0
-PyQt5
-sklearn
