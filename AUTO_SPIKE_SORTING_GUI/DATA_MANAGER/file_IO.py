@@ -5,7 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import SPIKES_EXPAND
+from AUXILIAR_CODE.GLOBAL_CONSTANTS import SPIKES_EXPAND
 from DATA_MANAGER.brpylib import NevFile
 import numpy as np
 

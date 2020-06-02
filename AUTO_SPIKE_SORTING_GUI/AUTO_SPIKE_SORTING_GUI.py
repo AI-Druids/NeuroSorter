@@ -5,7 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import APP_CSS_STYLE
+from AUXILIAR_CODE.GLOBAL_CONSTANTS import APP_CSS_STYLE
 from GUI.sorter_GUI import GUI 
 from DATA_MANAGER.data_manager import data_manager
 from CLEANER.cleaner import spike_denoiser

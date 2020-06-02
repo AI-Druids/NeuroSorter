@@ -5,7 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import CLEANER_DEEPL_H5_MODEL, LOSS, OPTIMIZER, BATCH_SIZE
+from AUXILIAR_CODE.GLOBAL_CONSTANTS import CLEANER_DEEPL_H5_MODEL, LOSS, OPTIMIZER, BATCH_SIZE
 from keras.models import load_model
 import numpy as np
 

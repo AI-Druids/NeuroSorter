@@ -67,7 +67,9 @@ class MplWidget(QWidget):
             base = np.mgrid[:data.shape[0],:data.shape[1]][1]
             self.canvas.axes.plot(base.T,data.T, color=self.my_cmap(unit))
         else:
-            self.canvas.axes.plot(np.arange(60),data, color=self.my_cmap(unit))   
+            self.canvas.axes.plot(np.arange(60),data, color=self.my_cmap(unit))  
+        self.canvas.axes.set_ylabel('Voltaje ($\mu$V)', color='w', fontsize=20)
+        self.canvas.axes.set_xlabel('Samples (n)', color='w', fontsize=20)
         self.canvas.draw()
 
     def plot_legend(self, units, numUnits):

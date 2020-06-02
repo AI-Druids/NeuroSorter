@@ -5,7 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import SPIKES_RANGE
+from AUXILIAR_CODE.GLOBAL_CONSTANTS import SPIKES_RANGE
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.models import Model
 from tensorflow.keras import callbacks

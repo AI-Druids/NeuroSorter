@@ -5,7 +5,7 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from GLOBAL_CONSTANTS import THRESHOLD_RANGE
+from AUXILIAR_CODE.GLOBAL_CONSTANTS import THRESHOLD_RANGE
 from DATA_MANAGER.file_IO import nev_manager 
 import numpy as np
 
@@ -89,8 +89,8 @@ class data_manager(nev_manager):
         return self.current['plotted']
 
     def clean_by_threshold(self, r_min, r_max):
-        self.threshold[0] = r_min * 1e3
-        self.threshold[1] = r_max * 1e3
+        self.threshold[0] = r_min
+        self.threshold[1] = r_max
         
         num = len(self.spike_dict['ChannelID'])
         index = np.asarray( [i for i in range(num) if (self.spike_dict['ChannelID'][i] > 0)] )
