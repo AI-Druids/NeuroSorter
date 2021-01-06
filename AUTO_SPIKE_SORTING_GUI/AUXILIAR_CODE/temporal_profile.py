@@ -7,13 +7,13 @@
 #%%
 import numpy as np 
 import matplotlib.pyplot as plt
-import numpy as np
+
 def run(spike_dict, current):
 
 
     index = current['plotted']
     time_stamps = np.empty((1,len(index)))
-    wave_forms = np.empty((60,len(index)))
+    wave_forms = np.empty((48,len(index)))
     units = np.empty((1,len(index)))
     for j in range(0,len(index)):
         time_stamps[0,j] = (spike_dict["TimeStamps"][index[j]])/20 #TimeStamp of each spike is obtained 
@@ -35,7 +35,7 @@ def run(spike_dict, current):
         for i in trans:
             k = np.round(time_stamps[0,i]) #Round the time stamps
             k = int(k)
-            time_position = np.arange(k, k+60) #Give space to the spike
+            time_position = np.arange(k, k+48) #Give space to the spike
             
             plt.plot(time_position, wave_forms[:,i], color=color) 
                 

@@ -18,7 +18,8 @@ class AutoEncoder_GM:
         
     def sort_spikes(self, spikes):
         # select the region of interest of the event
-        spikes = spikes[:,SPIKES_RANGE]
+        if spikes.shape[1] == 60:
+            spikes = spikes[:,SPIKES_RANGE]            
         # preprocessing: minmax scaling
         for i in range(np.shape(spikes)[0]):
             spikes[i,:] = spikes[i,:]-np.min(spikes[i,:])

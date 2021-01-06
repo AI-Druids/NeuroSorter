@@ -5,35 +5,34 @@
 @institutions: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED), Postdoctoral Researcher Instituto de Neurociencias UMH-CSIC)
 """
 #%%
-from AUXILIAR_CODE.GLOBAL_CONSTANTS import APP_CSS_STYLE
-from GUI.sorter_GUI import GUI 
+from GUI.GUI_behaviour import GUI_behaviour 
 from DATA_MANAGER.data_manager import data_manager
-from CLEANER.cleaner import spike_denoiser
-from SORTER.sorter import AutoEncoder_GM
+from CLEANER.cleaner_02 import spike_denoiser
+from SORTER.sorter_umap import sorter_umap as sorter
 from PyQt5.QtWidgets import QApplication
+
+import seaborn as sns
+sns.set(style="darkgrid")
+sns.set_context("notebook", rc={"lines.linewidth": 2.5})
 
 import sys
 
 class MyApp(QApplication):
     def __init__(self):
         QApplication.__init__(self,[''])
+        #-------------------
+        self.loadStyle() 
         ################# init GUI ################################
         self.spk = spike_denoiser()
-        self.ae = AutoEncoder_GM()
+        self.ae = sorter()
         self.dmg = data_manager(self.spk, self.ae)
-        self.gui = GUI(self.dmg)       
-        #-------------------
-        self.loadStyle()     
+        self.gui = GUI_behaviour(self.dmg)   
+        
+        sys.exit(self.exec_())
 
     def loadStyle(self):
-        #Aplicamos CSS
-        with open(APP_CSS_STYLE) as f:
+        with open('QTDesigner/CSS/Fibrary.qss') as f:
             self.setStyleSheet(f.read())
-        
-    def execute_gui(self):
-        ret = self.exec_()
-        sys.exit(ret)
-       
+
 if __name__ == "__main__":
     main = MyApp()
-    main.execute_gui()

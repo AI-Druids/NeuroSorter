@@ -8,7 +8,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 
-
 def run(spike_dict, current):
     max_ISIvalue=200
     ISI_bins = 30    

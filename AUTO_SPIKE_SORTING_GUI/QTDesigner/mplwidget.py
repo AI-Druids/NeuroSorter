@@ -57,17 +57,18 @@ class MplWidget(QWidget):
  
     def clear_plot(self):
         self.canvas.axes.clear()
+        self.canvas.draw()
         
     def clear_plot_units(self):
         self.axins.clear()
+        self.canvas.draw()
         
     def plot(self, data, unit=0):
-        
         if len(data.shape) > 1:
             base = np.mgrid[:data.shape[0],:data.shape[1]][1]
             self.canvas.axes.plot(base.T,data.T, color=self.my_cmap(unit))
         else:
-            self.canvas.axes.plot(np.arange(60),data, color=self.my_cmap(unit))  
+            self.canvas.axes.plot(np.arange(data.shape[1]),data, color=self.my_cmap(unit))  
         self.canvas.axes.set_ylabel('Voltaje ($\mu$V)', color='w', fontsize=20)
         self.canvas.axes.set_xlabel('Samples (n)', color='w', fontsize=20)
         self.canvas.draw()
@@ -85,7 +86,7 @@ class MplWidget(QWidget):
         mu = np.mean(data.T,axis=1)
         sigma = np.std(data.T,axis=1)
         self.axins.plot(mu, color=self.my_cmap(unit))
-        self.axins.fill_between(np.arange(60), mu+sigma, mu-sigma, facecolor=self.my_cmap(unit), alpha=0.5)
+        self.axins.fill_between(np.arange(data.shape[1]), mu+sigma, mu-sigma, facecolor=self.my_cmap(unit), alpha=0.5)
         self.canvas.draw()
 
     def units_legend(self,units):

@@ -32,6 +32,7 @@ class dynamic:
         sys.path.append(os.path.realpath('./AUXILIAR_CODE/'))
 
         try:
+            print(module_name)
             self.module = importlib.import_module(module_name)
             reload(self.module)
             self.module.run(self.dmg.spike_dict, self.dmg.current)
