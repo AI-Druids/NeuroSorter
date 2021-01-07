@@ -23,9 +23,8 @@ class spike_denoiser:
     
     def __init__(self):
         self.size_threshold = 1000
-        self.__load_model()
     
-    def __load_model(self):
+    def __load_references(self):
         mypath = './CLEANER/references/'
         self.references = []
         for file in [f for f in listdir(mypath) if isfile(join(mypath, f))]:
@@ -36,7 +35,9 @@ class spike_denoiser:
         for file in [f for f in listdir(mypath) if isfile(join(mypath, f))]:
             self.antireferences.append( np.load(mypath + file) )
         
-    def run(self, waveforms, n_neighbors=10, min_dist=.3, n_components=2, metric='manhattan', min_cluster_size=5):
+    def run(self, waveforms, n_neighbors=10, min_dist=.3, n_components=2, metric='manhattan'):
+        self.__load_references()
+        
         if waveforms.shape[0] <= n_neighbors:
             unit_IDs = self._filter_spikes(waveforms, np.zeros((waveforms.shape[0],), dtype=int))
         else:

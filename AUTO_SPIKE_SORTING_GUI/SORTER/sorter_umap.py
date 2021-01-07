@@ -14,7 +14,7 @@ class sorter_umap:
     def __init__(self):
         pass
         
-    def sort_spikes(self, spikes, n_neighbors=20, min_dist=.3, n_components=2, metric='manhattan', min_cluster_size=20):       
+    def sort_spikes(self, spikes, n_neighbors=20, min_dist=.3, n_components=2, metric='manhattan'):       
         if spikes.shape[0] <= n_neighbors:
             unit_IDs = np.zeros((spikes.shape[0],), dtype=int) + 1
         else:
@@ -46,8 +46,6 @@ class sorter_umap:
         unit_IDs = best_gmm.predict(latent_features)
         return unit_IDs
     
-    import similaritymeasures as sm
-
     def _detect_similarUnits(self, units, spikes):
         means = []
         for label in np.unique(units):

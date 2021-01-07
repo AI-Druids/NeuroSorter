@@ -58,7 +58,8 @@ class data_manager(nev_manager):
         else:
             return []
         
-    def undo(self):        
+    def undo(self): 
+        self.current['plotted'] = []
         index = [it for it,oldID in enumerate(self.spike_dict['OldID']) if oldID != None]
         for sel in index:
             self.spike_dict['UnitID'][sel] = self.spike_dict['OldID'][sel]
@@ -124,14 +125,14 @@ class data_manager(nev_manager):
         return self.current['plotted']
     
     @compute_time
-    def clean(self, n_neighbors=15, min_dist=.3, metric='manhattan', min_cluster_size=5):
+    def clean(self, n_neighbors=15, min_dist=.3, metric='manhattan'):
         if self.current['unitID'] != 'Noise':
             if self.current['unitID'] != 'All':
                 index = np.array( [it for it, channel  in enumerate(self.spike_dict['ChannelID']) if (channel == int(self.current['channelID']) and self.spike_dict['UnitID'][it] == int(self.current['unitID']) and self.spike_dict['UnitID'][it] != -1)] )
             else:
                 index = np.array( [it for it, channel  in enumerate(self.spike_dict['ChannelID']) if (channel == int(self.current['channelID']) and self.spike_dict['UnitID'][it] != -1)] )
             waveforms = np.array(self.spike_dict['Waveforms'])[index]
-            scores = self.spk.run(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+            scores = self.spk.run(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
             spike_index = index[scores==1]
             noise_index = index[scores==0]
 
@@ -146,14 +147,14 @@ class data_manager(nev_manager):
 
         
     @compute_time
-    def clean_all(self, n_neighbors=15, min_dist=.3, metric='manhattan', min_cluster_size=5):
+    def clean_all(self, n_neighbors=15, min_dist=.3, metric='manhattan'):
         # reset old unit for undo action
         self.spike_dict['OldID'] = [None for _ in self.spike_dict['OldID']]
             
         for channelID in np.unique(self.spike_dict['ChannelID']):
             index = np.array([it for it, channel in enumerate(self.spike_dict['ChannelID']) if channel == channelID and self.spike_dict['UnitID'][it] != -1])
             waveforms = np.array([self.spike_dict['Waveforms'][it] for it in index])
-            scores = self.spk.run(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+            scores = self.spk.run(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
             spike_index = index[scores==1]
             noise_index = index[scores==0]
 
@@ -168,7 +169,7 @@ class data_manager(nev_manager):
         return self.current['plotted']
     
     @compute_time
-    def sort(self, n_neighbors=20, min_dist=.3, metric='manhattan', min_cluster_size=20):
+    def sort(self, n_neighbors=20, min_dist=.3, metric='manhattan'):
         if self.current['unitID'] != 'Noise' and self.current['unitID'] != 'All':
 
             index_channel = np.array( [it for it, channel  in enumerate(self.spike_dict['ChannelID']) if (channel == int(self.current['channelID']) and self.spike_dict['UnitID'][it] == int(self.current['unitID']) and self.spike_dict['UnitID'][it] != -1)] )
@@ -186,7 +187,7 @@ class data_manager(nev_manager):
             # get the corresponding waveforms
             waveforms = np.array(self.spike_dict['Waveforms'])[index_chunit]
             # compute clustering
-            UnitIDs = self.ae.sort_spikes(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+            UnitIDs = self.ae.sort_spikes(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
             
             # set new unitIDs for the selected units in the selected channel
             for index,global_index in enumerate(index_chunit):
@@ -209,7 +210,7 @@ class data_manager(nev_manager):
         return self.current['plotted']
     
     @compute_time
-    def sort_all(self, n_neighbors=20, min_dist=.3, metric='manhattan', min_cluster_size=20):
+    def sort_all(self, n_neighbors=20, min_dist=.3, metric='manhattan'):
         # reset old unit for undo action
         self.spike_dict['OldID'] = [None for _ in self.spike_dict['OldID']]
             
@@ -218,7 +219,7 @@ class data_manager(nev_manager):
             index = np.array([it for it, channel in enumerate(self.spike_dict['ChannelID']) if channel == channelID and self.spike_dict['UnitID'][it] != -1])
             waveforms = np.array([self.spike_dict['Waveforms'][it] for it in index])
             
-            UnitIDs = self.ae.sort_spikes(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+            UnitIDs = self.ae.sort_spikes(waveforms, n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
 
             for it, unit in enumerate(UnitIDs):
                 self.spike_dict['OldID'][index[it]] = self.spike_dict['UnitID'][index[it]]

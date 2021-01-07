@@ -134,55 +134,95 @@
              <set>Qt::AlignCenter</set>
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
-             <item row="4" column="1">
-              <widget class="QLineEdit" name="n_neighbors_edit">
+             <item row="7" column="1">
+              <widget class="QPushButton" name="all_sorting_btn">
+               <property name="text">
+                <string>Sorting</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QComboBox" name="metric_comboBox">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <item>
+                <property name="text">
+                 <string>manhattan</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>euclidean</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>chebyshev</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>minkowski</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>canberra</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>braycurtis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>seuclidean</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cosine</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>correlation</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>n_neighbors</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QPushButton" name="all_denoising_btn">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Denoising</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="TemporalThreshold_Edit">
                <property name="text">
                 <string>10</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QLineEdit" name="min_cluster_size_edit">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>5</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="temporal_threshold_btn">
-               <property name="text">
-                <string>Threshold (ms)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="AmplitudeThreshold_Edit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>[-1000, 1000]</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -205,42 +245,44 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_5">
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="AmplitudeThreshold_Edit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
-                <string>min_dist</string>
+                <string>[-1000, 1000]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
-             <item row="8" column="0">
-              <widget class="QPushButton" name="all_denoising_btn">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="temporal_threshold_btn">
+               <property name="text">
+                <string>Threshold (ms)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0" colspan="2">
+              <widget class="QPushButton" name="all_in_btn">
+               <property name="text">
+                <string>All In One Step</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLineEdit" name="n_neighbors_edit">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
-               <property name="text">
-                <string>Denoising</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>n_neighbors</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QPushButton" name="all_sorting_btn">
-               <property name="text">
-                <string>Sorting</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="TemporalThreshold_Edit">
                <property name="text">
                 <string>10</string>
                </property>
@@ -249,22 +291,18 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <widget class="QComboBox" name="metric_comboBox">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>min_dist</string>
                </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QComboBox::AdjustToContents</enum>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>metric</string>
                </property>
-               <item>
-                <property name="text">
-                 <string>manhattan</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item row="1" column="0">
@@ -277,27 +315,6 @@
                </property>
                <property name="text">
                 <string>Threshold (mV)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>metric</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>min_cluster_size</string>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="0" colspan="2">
-              <widget class="QPushButton" name="all_in_btn">
-               <property name="text">
-                <string>All In One Step</string>
                </property>
               </widget>
              </item>
@@ -588,7 +605,7 @@
         <enum>Qt::LeftToRight</enum>
        </property>
        <attribute name="title">
-        <string>Others</string>
+        <string>Python Scripts</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_12">
         <item>
@@ -682,7 +699,7 @@
      <x>0</x>
      <y>0</y>
      <width>1643</width>
-     <height>32</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

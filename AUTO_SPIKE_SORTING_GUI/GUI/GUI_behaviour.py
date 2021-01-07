@@ -30,9 +30,6 @@ class GUI_behaviour(QMainWindow, ui):
         self.btn_save.clicked.connect(self.saveFileDialog)
         self.all_denoising_btn.clicked.connect(self.automatic_denoising)
         self.all_sorting_btn.clicked.connect(self.automatic_sorting)
-        self.channel_comboBox.activated.connect(lambda: self.toChannelID(self.channel_comboBox.currentText()))
-        self.unit_comboBox.activated.connect(lambda: self.toUnitID(self.unit_comboBox.currentText()))
-        self.U2ID_comboBox.activated.connect(lambda: self.selected_unit2ID(self.U2ID_comboBox.currentText()))
         self.amplitude_threshold_btn.clicked.connect(lambda: self.update_amplitude_threshold())
         self.temporal_threshold_btn.clicked.connect(lambda: self.update_temporal_threshold())
         self.delete_btn.clicked.connect(lambda: self.delete())
@@ -43,7 +40,12 @@ class GUI_behaviour(QMainWindow, ui):
         self.btn_run.clicked.connect(lambda: self.dyn.load_module(self.listWidget_3.currentItem().text()))
         self.btn_save_changes.clicked.connect(self.dyn.save_script)
         
+        self.channel_comboBox.activated.connect(lambda: self.toChannelID(self.channel_comboBox.currentText()))
+        self.unit_comboBox.activated.connect(lambda: self.toUnitID(self.unit_comboBox.currentText()))
+        self.U2ID_comboBox.activated.connect(lambda: self.selected_unit2ID(self.U2ID_comboBox.currentText()))
+        
         self.global_shortcuts = self._define_global_shortcuts()
+        self.update_U2ID_combobox()
 
     def _define_global_shortcuts(self):
         shortcuts = []
@@ -51,7 +53,7 @@ class GUI_behaviour(QMainWindow, ui):
          'Ctrl+Down':lambda: self.toChannelID('Down'), 
          'Shift+Up':lambda: self.toUnitID('Up'), 
          'Shift+Down':lambda: self.toUnitID('Down'), 
-         'Alt+0':lambda: self.selected_unit2ID(0), 
+         'Alt+0':lambda: self.selected_unit2ID('Noise'), 
          'Alt+1':lambda: self.selected_unit2ID(1), 
          'Alt+2':lambda: self.selected_unit2ID(2), 
          'Alt+3':lambda: self.selected_unit2ID(3), 
@@ -108,7 +110,7 @@ class GUI_behaviour(QMainWindow, ui):
         if unit == 'Noise':
             self.U2ID_comboBox.setCurrentIndex(0)
         else:
-            self.U2ID_comboBox.setCurrentIndex(int(unit))
+            self.U2ID_comboBox.setCurrentIndex(unit)
         index = self.dmg.selected_unit2ID(self.U2ID_comboBox.currentText())
         self.update_unit_combobox(self.channel_comboBox.currentText()), self.unit_comboBox.currentText()
         self.update_view(index)
@@ -144,9 +146,9 @@ class GUI_behaviour(QMainWindow, ui):
         self.log.myprint('ACTION == Spikes denoising in progress...')
         n_neighbors = int(self.n_neighbors_edit.text())
         min_dist = float(self.min_dist_edit.text())
-        min_cluster_size = int(self.min_cluster_size_edit.text())
         metric = self.metric_comboBox.currentText()
-        index = self.dmg.clean(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+        
+        index = self.dmg.clean(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
         self.log.myprint_out('ACTION == Spikes denoising is done!')
         self.update_unit_combobox(self.channel_comboBox.currentText(), self.unit_comboBox.currentText())
         self.update_view(index)
@@ -155,9 +157,9 @@ class GUI_behaviour(QMainWindow, ui):
         self.log.myprint('ACTION == Spikes sorting in progress...')
         n_neighbors = int(self.n_neighbors_edit.text())
         min_dist = float(self.min_dist_edit.text())
-        min_cluster_size = int(self.min_cluster_size_edit.text())
         metric = self.metric_comboBox.currentText()
-        index = self.dmg.sort(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+        
+        index = self.dmg.sort(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
         self.log.myprint_out('ACTION == Spikes sorting is done!')
         self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
         self.update_view(index)
@@ -169,9 +171,9 @@ class GUI_behaviour(QMainWindow, ui):
         self.log.myprint_out('ACTION == Temporal threshold is done!')
         self.update_amplitude_threshold()
         self.log.myprint_out('ACTION == Amplitude threshold is done!')
-        self.dmg.clean_all(n_neighbors=15, min_dist=0.2, metric='manhattan', min_cluster_size=5)
+        self.dmg.clean_all(n_neighbors=15, min_dist=0.2, metric='manhattan')
         self.log.myprint_out('ACTION == Spikes denoising is done!')
-        index = self.dmg.sort_all(n_neighbors=20, min_dist=0.3, metric='manhattan', min_cluster_size=20)
+        index = self.dmg.sort_all(n_neighbors=20, min_dist=0.3, metric='manhattan')
         self.log.myprint_out('ACTION == Spikes sorting is done!')
         self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
         self.update_view(index)
@@ -180,9 +182,9 @@ class GUI_behaviour(QMainWindow, ui):
         self.log.myprint('ACTION == Spikes denoising in progress...')
         n_neighbors = int(self.n_neighbors_edit.text())
         min_dist = float(self.min_dist_edit.text())
-        min_cluster_size = int(self.min_cluster_size_edit.text())
         metric = self.metric_comboBox.currentText()
-        index = self.dmg.clean_all(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+        
+        index = self.dmg.clean_all(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
         self.log.myprint_out('ACTION == Spikes denoising is done!')
         self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
         self.update_view(index)
@@ -191,9 +193,9 @@ class GUI_behaviour(QMainWindow, ui):
         self.log.myprint('ACTION == Spikes sorting in progress...')
         n_neighbors = int(self.n_neighbors_edit.text())
         min_dist = float(self.min_dist_edit.text())
-        min_cluster_size = int(self.min_cluster_size_edit.text())
         metric = self.metric_comboBox.currentText()
-        index = self.dmg.sort_all(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric, min_cluster_size=min_cluster_size)
+        
+        index = self.dmg.sort_all(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
         self.log.myprint_out('ACTION == Spikes sorting is done!')
         self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
         self.update_view(index)
@@ -207,7 +209,7 @@ class GUI_behaviour(QMainWindow, ui):
         if index:
             waveforms = np.asarray(self.dmg.spike_dict['Waveforms'])[index]
             units = np.unique(np.asarray(self.dmg.spike_dict['UnitID'])[index])
-            print('manage plotting units ', units)
+            
             self.MplWidget.clear_plot()
             numUnits = []
             for unit in units:
@@ -215,7 +217,7 @@ class GUI_behaviour(QMainWindow, ui):
                 waveforms_unit = waveforms[subindex, :]
                 numUnits.append(len(waveforms_unit))
                 self.MplWidget.plot(waveforms_unit, unit)
-
+            print('manage plotting units ', units, numUnits)
             self.MplWidget.plot_legend(units, numUnits)
         else:
             self.MplWidget.clear_plot()
@@ -262,7 +264,6 @@ class GUI_behaviour(QMainWindow, ui):
         [self.channel_comboBox.addItem(str(channel)) for channel in channels]
 
     def update_unit_combobox(self, channelID, unitID):
-        print('update unit ', channelID, unitID)
         channelID = int(channelID)
         units = np.unique([self.dmg.spike_dict['UnitID'][idx] for idx, channel in enumerate(self.dmg.spike_dict['ChannelID']) if channel == channelID if self.dmg.spike_dict['UnitID'][idx] != -1])
 
@@ -279,7 +280,6 @@ class GUI_behaviour(QMainWindow, ui):
         else:
             
             if unitID != 'All' and unitID != 'Noise':
-                print('update unit unitId -1 ', int(unitID)-1)
                 self.unit_comboBox.setCurrentIndex(int(unitID)-1)
                 self.dmg.current['unitID'] = int(unitID)
             elif unitID == 'All':
@@ -287,13 +287,11 @@ class GUI_behaviour(QMainWindow, ui):
                 
                 self.unit_comboBox.setCurrentIndex(index)
                 self.dmg.current['unitID'] = unitID
-                print('update unit index ', index, self.dmg.current['unitID'])
             elif unitID == 'Noise':
                 index = [pos for pos,_ in enumerate(AllItems) if AllItems[pos] == 'All'][0]
 
                 self.unit_comboBox.setCurrentIndex(index)
                 self.dmg.current['unitID'] = unitID
-                print('update unit index ', index, self.dmg.current['unitID'])
 
     def update_U2ID_combobox(self):       
         [self.U2ID_comboBox.addItem(str(unit)) for unit in ['Noise', 1, 2, 3, 4, 5, 6, 7, 8, 9]]
@@ -314,8 +312,8 @@ class GUI_behaviour(QMainWindow, ui):
             self.log.myprint_error('Cannot load selected file.')
 
         self.update_channel_combobox()
-        self.update_unit_combobox(self.channel_comboBox.currentText())
-        self.update_U2ID_combobox()
+        self.toChannelID('Down')
+        self.update_unit_combobox(self.channel_comboBox.currentText(), self.unit_comboBox.currentText())
 
     def saveFileDialog(self):
         options = QFileDialog.Options()
