@@ -4,7 +4,7 @@ Note: This document covers the basic information to use NeuroSorter Beta version
 
 ## 1 Dependencies
 
-Numpy, Matplotlib, Tensorflow==2.0.0, PyQT5, sklearn 
+PyQt5, QtPy, h5py, umap-learn, seaborn, matplotlib, numpy, scikit-learn, scipy, similaritymeasures
 
 All dependencies can be installed using:
 

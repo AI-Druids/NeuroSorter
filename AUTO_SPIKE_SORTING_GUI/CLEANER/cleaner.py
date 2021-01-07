@@ -15,7 +15,6 @@ class spike_denoiser:
         self.__load_model()
     
     def __load_model(self):
-        print('load model')
         self.model = load_model(CLEANER_DEEPL_H5_MODEL, compile=False)
         self.model.compile(loss=LOSS, optimizer=OPTIMIZER, metrics=['accuracy'])
         print('model loaded')
@@ -25,7 +24,6 @@ class spike_denoiser:
             waveforms = waveforms[:,SPIKES_RANGE] 
         elif waveforms.shape[1] == 48:
             waveforms = self.expand(waveforms)
-        print('run waveforms ', waveforms.shape)
         # minmax scaling in the range (0,1)
         for i in range(0,waveforms.shape[0]):
             waveforms[i,:] = (waveforms[i,:] - np.min(waveforms[i,:])) / (np.max(waveforms[i,:]) - np.min(waveforms[i,:])).astype(float)
@@ -33,7 +31,7 @@ class spike_denoiser:
         # inference on waveforms using the loaded model
         scores = self.model.predict_classes(waveforms, batch_size=BATCH_SIZE)
         print(scores)
-        return np.logical_not(scores )
+        return np.logical_not(scores)
     
     def expand(self, waveforms):
         ini = np.zeros((6,))
