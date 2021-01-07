@@ -1,5 +1,11 @@
-numpy
-matplotlib
-tensorflow==2.0
 PyQt5
-sklearn
+QtPy
+h5py
+umap-learn
+seaborn
+matplotlib
+numpy
+scikit-learn
+scipy
+similaritymeasures
+

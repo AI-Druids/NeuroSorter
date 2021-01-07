@@ -154,15 +154,18 @@ class GUI_behaviour(QMainWindow, ui):
         self.update_view(index)
 
     def sorting(self):
-        self.log.myprint('ACTION == Spikes sorting in progress...')
-        n_neighbors = int(self.n_neighbors_edit.text())
-        min_dist = float(self.min_dist_edit.text())
-        metric = self.metric_comboBox.currentText()
-        
-        index = self.dmg.sort(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
-        self.log.myprint_out('ACTION == Spikes sorting is done!')
-        self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
-        self.update_view(index)
+        if self.dmg.current['unitID'] == 'All':
+            self.log.myprint_error('Sorting is not allowed when current UnitID=All')
+        else:
+            self.log.myprint('ACTION == Spikes sorting in progress...')
+            n_neighbors = int(self.n_neighbors_edit.text())
+            min_dist = float(self.min_dist_edit.text())
+            metric = self.metric_comboBox.currentText()
+            
+            index = self.dmg.sort(n_neighbors=n_neighbors, min_dist=min_dist, metric=metric)
+            self.log.myprint_out('ACTION == Spikes sorting is done!')
+            self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
+            self.update_view(index)
 
 
     def all_in_one_step(self):
