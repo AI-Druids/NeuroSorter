@@ -106,14 +106,18 @@ class GUI_behaviour(QMainWindow, ui):
         self.update_view(index)
 
     def selected_unit2ID(self, unit):
-        self.log.myprint('ACTION == selected_unit2ID-> ' + str(unit))
-        if unit == 'Noise':
-            self.U2ID_comboBox.setCurrentIndex(0)
+        if self.dmg.current['unitID'] == 'All':
+            self.log.myprint_error('Unit ID modification is not allowed when current UnitID=All')
         else:
-            self.U2ID_comboBox.setCurrentIndex(unit)
-        index = self.dmg.selected_unit2ID(self.U2ID_comboBox.currentText())
-        self.update_unit_combobox(self.channel_comboBox.currentText()), self.unit_comboBox.currentText()
-        self.update_view(index)
+            self.log.myprint('ACTION == selected_unit2ID-> ' + str(unit))
+            if unit == 'Noise':
+                self.U2ID_comboBox.setCurrentIndex(0)
+            else:
+                self.U2ID_comboBox.setCurrentIndex(unit)
+            index = self.dmg.selected_unit2ID(self.U2ID_comboBox.currentText())
+            print('selected unit 2 id U2ID_comboBox, channel_comboBox, unit_comboBox', self.U2ID_comboBox.currentText(), self.channel_comboBox.currentText(), self.unit_comboBox.currentText())
+            self.update_unit_combobox(self.channel_comboBox.currentText(), self.unit_comboBox.currentText())
+            self.update_view(index)
 
     def update_amplitude_threshold(self):
         self.log.myprint('UPDATE Amplitude Threshold range.')
