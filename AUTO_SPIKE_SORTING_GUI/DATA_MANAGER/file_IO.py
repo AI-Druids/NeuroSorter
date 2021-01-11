@@ -6,6 +6,7 @@
 """
 #%%
 from PY_blackrock.brpylib import NevFile, brpylib_ver
+from scipy.signal import resample
 import h5py
 import numpy as np
 
@@ -40,7 +41,7 @@ class nev_manager:
         with h5py.File(file, 'r') as file:
             [append_channelID(channelID) for channelID in file['NEV']['Data']['Spikes'].get('Electrode')[:]]
             [append_TimeStamps(timestamp) for timestamp in file['NEV']['Data']['Spikes'].get('TimeStamp')[:]]
-            [append_Waveforms(waveform) for waveform in file['NEV']['Data']['Spikes'].get('Waveform')[:]]
+            [append_Waveforms( resample(waveform,48) ) for waveform in file['NEV']['Data']['Spikes'].get('Waveform')[:]]
             [append_UnitID(1) for timestamp in file['NEV']['Data']['Spikes'].get('TimeStamp')[:]]
             [append_OldID(None) for timestamp in file['NEV']['Data']['Spikes'].get('TimeStamp')[:]]
             [append_ExperimentID(ExperimentID) for timestamp in file['NEV']['Data']['Spikes'].get('TimeStamp')[:]]
@@ -67,7 +68,7 @@ class nev_manager:
             for timestamp, waveform in zip(spikes['TimeStamps'][it], spikes['Waveforms'][it]):
                 append_channelID(channel)
                 append_TimeStamps(timestamp)
-                append_Waveforms(waveform/1000)
+                append_Waveforms(resample(waveform,48)/1000)
                 append_UnitID(1)
                 append_OldID(None)
                 append_ExperimentID(ExperimentID)
@@ -85,7 +86,7 @@ class nev_manager:
         
         [append_channelID(ChannelID) for ChannelID in dictionary['ChannelID']]
         [append_TimeStamps(TimeStamp) for TimeStamp in dictionary['TimeStamps']]
-        [append_Waveforms(Waveform) for Waveform in dictionary['Waveforms']]
+        [append_Waveforms(resample(Waveform,48)) for Waveform in dictionary['Waveforms']]
         [append_UnitID(UnitID) for UnitID in dictionary['UnitID']]
         [append_OldID(OldID) for OldID in dictionary['OldID']]
         [append_ExperimentID(ExperimentID) for ExperimentID in dictionary['ExperimentID']]

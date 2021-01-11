@@ -167,14 +167,13 @@ class GUI_behaviour(QMainWindow, ui):
             self.update_unit_combobox(self.channel_comboBox.currentText(), 'All')
             self.update_view(index)
 
-
     def all_in_one_step(self):
         self.log.myprint('ACTION == Spikes denoising in progress...')
         self.update_temporal_threshold()
         self.log.myprint_out('ACTION == Temporal threshold is done!')
         self.update_amplitude_threshold()
         self.log.myprint_out('ACTION == Amplitude threshold is done!')
-        self.dmg.clean_all(n_neighbors=15, min_dist=0.2, metric='manhattan')
+        self.dmg.clean_all(n_neighbors=10, min_dist=0.1, metric='manhattan')
         self.log.myprint_out('ACTION == Spikes denoising is done!')
         index = self.dmg.sort_all(n_neighbors=20, min_dist=0.3, metric='manhattan')
         self.log.myprint_out('ACTION == Spikes sorting is done!')

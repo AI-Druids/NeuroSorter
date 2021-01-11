@@ -19,7 +19,8 @@ class spike_denoiser:
         self.model.compile(loss=LOSS, optimizer=OPTIMIZER, metrics=['accuracy'])
         print('model loaded')
         
-    def run(self, waveforms):
+    def run(self, waveforms, n_neighbors=None, min_dist=None, metric=None):
+        print('run waveforms ', waveforms.shape)
         if waveforms.shape[1] == 60:
             waveforms = waveforms[:,SPIKES_RANGE] 
         elif waveforms.shape[1] == 48:
@@ -27,7 +28,7 @@ class spike_denoiser:
         # minmax scaling in the range (0,1)
         for i in range(0,waveforms.shape[0]):
             waveforms[i,:] = (waveforms[i,:] - np.min(waveforms[i,:])) / (np.max(waveforms[i,:]) - np.min(waveforms[i,:])).astype(float)
-        print('run waveforms ', waveforms.shape)    
+            
         # inference on waveforms using the loaded model
         scores = self.model.predict_classes(waveforms, batch_size=BATCH_SIZE)
         print(scores)
