@@ -41,6 +41,7 @@ def run(spike_dict,current):
     plt.bar(lags, c, width = 1, color = 'k')
     plt.xlabel('Time (ms)')
     plt.ylabel('Corr coef')   
+    plt.show()
     
 def crosscorrelation(x, y, maxlag):	
     py = np.pad(y.conj(), 2*maxlag, mode='constant')

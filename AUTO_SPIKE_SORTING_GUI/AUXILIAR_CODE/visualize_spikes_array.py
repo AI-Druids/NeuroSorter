@@ -56,6 +56,7 @@ def run(spike_dict, current):
             plt.axis('off')
             plt.title('E'+str(electrodeMap[idx])+'CH'+str(channelMap[idx]))
         fig.tight_layout()
+        plt.show()
 
 
         

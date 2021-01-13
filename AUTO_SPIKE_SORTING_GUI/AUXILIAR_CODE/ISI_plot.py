@@ -26,6 +26,7 @@ def run(spike_dict, current):
     plt.hist(ISI[ISI<max_ISIvalue], bins = ISI_bins)
     plt.xlabel('Time (ms)')
     plt.ylabel('Spike count ' + str(len(np.squeeze(time_stamps))))
+    plt.show()
         
 
         

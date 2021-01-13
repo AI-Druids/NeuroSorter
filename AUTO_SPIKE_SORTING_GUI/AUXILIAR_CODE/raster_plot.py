@@ -26,3 +26,4 @@ def run(spike_dict, current):
             
         plt.xlabel('Time[s]')
         plt.ylabel('Channel')  
+        plt.show()

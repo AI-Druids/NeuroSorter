@@ -38,4 +38,5 @@ def run(spike_dict, current):
             time_position = np.arange(k, k+48) #Give space to the spike
             
             plt.plot(time_position, wave_forms[:,i], color=color) 
+        plt.show()
                 

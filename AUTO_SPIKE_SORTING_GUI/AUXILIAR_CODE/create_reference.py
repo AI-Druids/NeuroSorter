@@ -20,7 +20,7 @@ def run(spike_dict, current):
         plt.plot(spike_dict['Waveforms'][index], 'c')
         waveforms.append(spike_dict['Waveforms'][index])
     plt.plot( np.array(waveforms).mean(axis=0) , 'm')
-    
+    plt.show()
     mypath = './CLEANER/references/'
     numfiles = len([f for f in listdir(mypath) if isfile(join(mypath, f))])
 
